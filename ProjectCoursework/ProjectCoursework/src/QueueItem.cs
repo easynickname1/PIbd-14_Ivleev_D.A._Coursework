@@ -1,4 +1,9 @@
-﻿namespace ProjectCoursework;
+﻿namespace ProjectCoursework.src;
+
+/// <summary>
+/// Класс-состояние
+/// </summary
+[Serializable]
 public class QueueItem
 {
     public int Priority { get; set; }

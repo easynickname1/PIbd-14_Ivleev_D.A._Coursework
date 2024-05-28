@@ -1,5 +1,8 @@
-﻿namespace ProjectCoursework;
+﻿namespace ProjectCoursework.src;
 
+/// <summary>
+/// Класс-управленец
+/// </summary>
 public class PriorityQueueManager
 {
     private PriorityQueue _queue;

@@ -1,5 +1,8 @@
-﻿namespace ProjectCoursework;
+﻿namespace ProjectCoursework.src;
 
+/// <summary>
+/// Класс-реализатор
+/// </summary>
 public class PriorityQueue
 {
     private QueueItem? _head;

@@ -1,11 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using ProjectCoursework.src;
 
 namespace ProjectCoursework;
 
+/// <summary>
+/// Форма для ввода начальных параметров работы визуализации, либо ввода данных, требуемых для продолжения работы визуализации
+/// </summary>
 public partial class FormQueueInput : Form
 {
-    public QueueItem QueueItem { get; private set; }
+    public QueueItem? QueueItem { get; private set; }
 
     public FormQueueInput()
     {

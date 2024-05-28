@@ -1,8 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using ProjectCoursework.src;
 
 namespace ProjectCoursework;
 
+/// <summary>
+/// Главная форма, на которой визуализируется работа класса путем последовательного отображения состояний из списка состояний
+/// </summary>
 public partial class FormQueue : Form
 {
     private PriorityQueueManager _queueManager;
@@ -31,14 +33,22 @@ public partial class FormQueue : Form
 
     private void DequeueButton_Click(object sender, EventArgs e)
     {
-        if (_queueManager.GetState(0) == null)
+        if (_queueManager.GetStateCount() == 0)
         {
             MessageBox.Show("Очередь пуста");
         }
         else
         {
-            QueueItem value = _queueManager.Dequeue();
-            MessageBox.Show($"Извлечен элемент: Приоритет: {value.Priority}, Значение: {value.Value}");
+            try
+            {
+                QueueItem value = _queueManager.Dequeue();
+                MessageBox.Show($"Извлечен элемент: Приоритет: {value.Priority}, Значение: {value.Value}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Очередь пуста");
+                return;
+            }
             UpdateVisualization();
             _currentStep++;
         }
@@ -49,7 +59,7 @@ public partial class FormQueue : Form
         if (_currentStep < _queueManager.GetStateCount() - 1)
         {
             _currentStep++;
-            UpdateVisualization();
+            UpdateVisualization(_currentStep);
         }
         else
         {
@@ -62,7 +72,7 @@ public partial class FormQueue : Form
         if (_currentStep > 0)
         {
             _currentStep--;
-            UpdateVisualization();
+            UpdateVisualization(_currentStep);
         }
         else
         {
@@ -96,8 +106,8 @@ public partial class FormQueue : Form
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
             _queueManager.LoadFromFile(openFileDialog.FileName);
-            _currentStep = 0;
-            UpdateVisualization();
+            _currentStep = _queueManager.GetStateCount() - 1;
+            UpdateVisualization(_currentStep);
         }
     }
 
@@ -109,6 +119,11 @@ public partial class FormQueue : Form
 
     private void UpdateVisualization()
     {
-        visualizationPictureBox.Image = _visualizer.Visualize(_queueManager.GetState(_currentStep).QueueItems);
+        visualizationPictureBox.Image = _visualizer.Visualize(_queueManager.GetCurrentState().QueueItems);
+    }
+
+    private void UpdateVisualization(int step)
+    {
+        visualizationPictureBox.Image = _visualizer.Visualize(_queueManager.GetState(step).QueueItems);
     }
 }
