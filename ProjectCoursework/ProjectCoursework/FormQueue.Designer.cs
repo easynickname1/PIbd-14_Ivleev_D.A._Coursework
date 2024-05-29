@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            previousStepButton = new Button();
-            nextStepButton = new Button();
+            previousStateButton = new Button();
+            nextStateButton = new Button();
             dequeueButton = new Button();
             enqueueButton = new Button();
             resetButton = new Button();
@@ -40,6 +40,8 @@
             infoMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             panel2 = new Panel();
+            previousStepButton = new Button();
+            nextStepButton = new Button();
             visualizationPictureBox = new PictureBox();
             menuStrip.SuspendLayout();
             panel1.SuspendLayout();
@@ -47,27 +49,27 @@
             ((System.ComponentModel.ISupportInitialize)visualizationPictureBox).BeginInit();
             SuspendLayout();
             // 
-            // previousStepButton
+            // previousStateButton
             // 
-            previousStepButton.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            previousStepButton.Location = new Point(12, 9);
-            previousStepButton.Name = "previousStepButton";
-            previousStepButton.Size = new Size(150, 46);
-            previousStepButton.TabIndex = 0;
-            previousStepButton.Text = "Предыдущий шаг";
-            previousStepButton.UseVisualStyleBackColor = true;
-            previousStepButton.Click += PreviousStepButton_Click;
+            previousStateButton.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            previousStateButton.Location = new Point(12, 9);
+            previousStateButton.Name = "previousStateButton";
+            previousStateButton.Size = new Size(120, 46);
+            previousStateButton.TabIndex = 0;
+            previousStateButton.Text = "Предыдущее\r\nсостояние";
+            previousStateButton.UseVisualStyleBackColor = true;
+            previousStateButton.Click += PreviousStateButton_Click;
             // 
-            // nextStepButton
+            // nextStateButton
             // 
-            nextStepButton.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            nextStepButton.Location = new Point(168, 9);
-            nextStepButton.Name = "nextStepButton";
-            nextStepButton.Size = new Size(150, 46);
-            nextStepButton.TabIndex = 1;
-            nextStepButton.Text = "Следующий шаг";
-            nextStepButton.UseVisualStyleBackColor = true;
-            nextStepButton.Click += NextStepButton_Click;
+            nextStateButton.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            nextStateButton.Location = new Point(138, 9);
+            nextStateButton.Name = "nextStateButton";
+            nextStateButton.Size = new Size(120, 46);
+            nextStateButton.TabIndex = 1;
+            nextStateButton.Text = "Следующее\r\nсостояние";
+            nextStateButton.UseVisualStyleBackColor = true;
+            nextStateButton.Click += NextStateButton_Click;
             // 
             // dequeueButton
             // 
@@ -141,8 +143,8 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(nextStepButton);
-            panel1.Controls.Add(previousStepButton);
+            panel1.Controls.Add(nextStateButton);
+            panel1.Controls.Add(previousStateButton);
             panel1.Controls.Add(resetButton);
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(0, 383);
@@ -152,20 +154,46 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(previousStepButton);
+            panel2.Controls.Add(nextStepButton);
             panel2.Controls.Add(dequeueButton);
             panel2.Controls.Add(enqueueButton);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 24);
             panel2.Name = "panel2";
-            panel2.Size = new Size(800, 120);
+            panel2.Size = new Size(800, 101);
             panel2.TabIndex = 8;
+            // 
+            // previousStepButton
+            // 
+            previousStepButton.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            previousStepButton.Location = new Point(279, 52);
+            previousStepButton.Name = "previousStepButton";
+            previousStepButton.Size = new Size(120, 32);
+            previousStepButton.TabIndex = 5;
+            previousStepButton.Text = "Шаг назад";
+            previousStepButton.UseVisualStyleBackColor = true;
+            previousStepButton.Visible = false;
+            previousStepButton.Click += PreviousStepButton_Click;
+            // 
+            // nextStepButton
+            // 
+            nextStepButton.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            nextStepButton.Location = new Point(405, 52);
+            nextStepButton.Name = "nextStepButton";
+            nextStepButton.Size = new Size(120, 32);
+            nextStepButton.TabIndex = 4;
+            nextStepButton.Text = "Шаг вперед";
+            nextStepButton.UseVisualStyleBackColor = true;
+            nextStepButton.Visible = false;
+            nextStepButton.Click += NextStepButton_Click;
             // 
             // visualizationPictureBox
             // 
             visualizationPictureBox.Dock = DockStyle.Fill;
-            visualizationPictureBox.Location = new Point(0, 144);
+            visualizationPictureBox.Location = new Point(0, 125);
             visualizationPictureBox.Name = "visualizationPictureBox";
-            visualizationPictureBox.Size = new Size(800, 239);
+            visualizationPictureBox.Size = new Size(800, 258);
             visualizationPictureBox.TabIndex = 9;
             visualizationPictureBox.TabStop = false;
             // 
@@ -192,8 +220,8 @@
 
         #endregion
 
-        private Button previousStepButton;
-        private Button nextStepButton;
+        private Button previousStateButton;
+        private Button nextStateButton;
         private Button dequeueButton;
         private Button enqueueButton;
         private Button resetButton;
@@ -205,5 +233,7 @@
         private Panel panel2;
         private ToolStripMenuItem infoMenuItem;
         private PictureBox visualizationPictureBox;
+        private Button previousStepButton;
+        private Button nextStepButton;
     }
 }

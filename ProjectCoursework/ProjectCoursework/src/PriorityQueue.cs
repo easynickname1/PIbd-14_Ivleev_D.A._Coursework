@@ -14,7 +14,7 @@ public class PriorityQueue
         _tail = null;
     }
 
-    public void Enqueue(QueueItem item)
+    public QueueItem Enqueue(QueueItem item)
     {
         // Вставка по приоритету (в порядке возрастания)
         if (_head == null || item.Priority < _head.Priority)
@@ -36,17 +36,19 @@ public class PriorityQueue
             {
                 current = current.Next;
             }
-            QueueItem newNode = new QueueItem(item.Priority, item.Value) { Prev = current, Next = current.Next };
-            current.Next = newNode;
-            if (newNode.Next == null)
+            QueueItem newItem = new QueueItem(item.Priority, item.Value) { Prev = current, Next = current.Next };
+            current.Next = newItem;
+            if (newItem.Next == null)
             {
-                _tail = newNode;
+                _tail = newItem;
             }
             else
             {
-                newNode.Next.Prev = newNode;
+                newItem.Next.Prev = newItem;
             }
+            return newItem;
         }
+        return _head;
     }
 
     public QueueItem Dequeue()
@@ -102,21 +104,4 @@ public class PriorityQueue
     {
         return _head;
     }
-
-    //// Метод для возвращения в состояние
-    //public void RestoreState(PriorityQueueState state)
-    //{
-    //    Clear();
-    //    if (state.QueueItems != null)
-    //    {
-    //        _head = new QueueItem(state.QueueItems[0]);
-    //        QueueItem current = _head;
-    //        for (int i = 1; i < state.Nodes.Length; i++)
-    //        {
-    //            current.Next = new QueueItem(state.QueueItems[i]) { Prev = current };
-    //            current = current.Next;
-    //        }
-    //        _tail = current;
-    //    }
-    //}
 }

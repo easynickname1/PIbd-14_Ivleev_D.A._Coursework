@@ -14,17 +14,18 @@ public class PriorityQueueManager
         _storage = new PriorityQueueStorage();
     }
 
-    public void Enqueue(QueueItem item)
+    public QueueItem Enqueue(QueueItem item)
     {
-        _queue.Enqueue(item);
+        QueueItem addedItem = _queue.Enqueue(item);
         _storage.AddState(_queue.GetState());
+        return addedItem;
     }
 
     public QueueItem Dequeue()
     {
-        QueueItem value = _queue.Dequeue();
+        QueueItem item = _queue.Dequeue();
         _storage.AddState(_queue.GetState());
-        return value;
+        return item;
     }
     public int GetStateCount()
     {
