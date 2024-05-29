@@ -64,6 +64,7 @@ public partial class FormQueue : Form
                 MessageBox.Show("Очередь пуста");
                 return;
             }
+
             UpdateVisualization();
             _currentState++;
         }
